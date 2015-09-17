@@ -1,4 +1,5 @@
 import itertools
+from flask import Flask
 
 def is_same_subnet(ip1, ip2):
     for p1, p2 in zip(ip1.split("."), ip2.split("."))[:-1]:
@@ -21,4 +22,11 @@ def get_speed(ips):
 def get_max_speed(interconnections):
     return max(map(get_speed, interconnections))
 
-print (is_one_subnet("1.2.4.4","1.2.4.5"))
+application = Flask(__name__)
+
+@application.route("/")
+def get_interconnections_form():
+    return ""
+
+if __naime__ == "__main__":
+    application.run()
