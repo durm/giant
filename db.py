@@ -36,4 +36,5 @@ def sql_generate_iptable_item(user, ip,date):
 if __name__ == "__main__":
     cur = conn.cursor()
     cur.execute(sql_create_table)
+    cur.fetchall()
     

@@ -34,5 +34,5 @@ def interconnections():
     return jsonify(user1=user1, user2=user2, interconnection=False)
 
 
-if __naime__ == "__main__":
+if __name__ == "__main__":
     application.run()
