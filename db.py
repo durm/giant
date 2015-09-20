@@ -17,7 +17,7 @@ def sql_iptables_by_user(user):
     return """
         SELECT ip_address 
         FROM iptables 
-        WHERE user_id = {0} 
+        WHERE user_id = '{0}' 
     """.format(user)
 
 def sql_intersect_iptables(user1, user2):
