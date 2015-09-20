@@ -1,5 +1,5 @@
 import itertools
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, g
 from giant.db import get_db_connection, sql_intersect_iptables
 
 def is_same_subnet(ip1, ip2):
@@ -23,17 +23,19 @@ def interconnection():
     conn = get_db_connection()
     user1 = request.args["user1"]
     user2 = request.args["user2"]
-    ip1 = None
+    
     cur = conn.cursor()
     cur.execute(sql_intersect_iptables(user1, user2))
-    for row in cur.fetchall():
-        nip = row[0]
-        if ip1 is not None:
-            if is_different_subnet(ip1, nip):
-                return jsonify(user1=user1, user2=user2, interconnection=True)
-        else:
-            ip1 = nip
+    
+    ips = [ip for ip in row for row in cur.fetchall()]
     conn.close()
+    c = 0
+    
+    for ip1, ip2 in itertools.combinations(ips, 2):
+        if is_different_subnet(ip1, ip2):
+            c += 1
+            if c == 2:
+                return jsonify(user1=user1, user2=user2, interconnection=True)
     return jsonify(user1=user1, user2=user2, interconnection=False)
 
 
