@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 from giant.db import get_db_connection, sql_intersect_iptables
 
 def is_same_subnet(ip1, ip2):
-    for p1, p2 in zip(ip1.split("."), ip2.split("."))[:-1]:
+    for p1, p2 in list(zip(ip1.split("."), ip2.split(".")))[:-1]:
         if p1 != p2:
             return False
     return True
