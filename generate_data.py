@@ -15,7 +15,7 @@ def generate_ip():
     
 
 if __name__ == "__main__":
-    from giant.db import conn
+    from giant.db import conn, sql_generate_iptable_item
     
     cur = conn.cursor()
     
