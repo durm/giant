@@ -31,12 +31,21 @@ def interconnection():
     conn.close()
     c = 0
     
+    pairs = []
+    resp = {
+        "ips": ips,
+        "user1": user1,
+        "user2": user2,
+        "pairs": pairs
+    }
+    
     for ip1, ip2 in itertools.combinations(ips, 2):
         if is_different_subnet(ip1, ip2):
+        pairs.append((ip1, ip2))
             c += 1
             if c == 2:
-                return jsonify(user1=user1, user2=user2, interconnection=True)
-    return jsonify(user1=user1, user2=user2, interconnection=False)
+                return jsonify(resp, interconnection=True)
+    return jsonify(resp, interconnection=False)
 
 
 if __name__ == "__main__":
