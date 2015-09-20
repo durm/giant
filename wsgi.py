@@ -16,8 +16,8 @@ def is_different_subnet(ip1, ip2):
 application = Flask(__name__)
 
 
-@application.route("/")
-def interconnections():
+@application.route("/interconnection/")
+def interconnection():
     assert "user1" in request.args and "user2" in request.args, "Set users"
     conn = get_db_connection()
     user1 = request.args["user1"]
