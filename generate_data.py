@@ -27,6 +27,8 @@ if __name__ == "__main__":
     cur = conn.cursor()
     
     for i in range(c):
+        if i % 100 == 0:
+            conn.commit()
         cur.execute(sql_generate_iptable_item(generate_user_id(), generate_ip(), generate_datetime()))
     
     conn.commit()
