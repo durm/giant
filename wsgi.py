@@ -41,7 +41,7 @@ def interconnection():
     
     for ip1, ip2 in itertools.combinations(ips, 2):
         if is_different_subnet(ip1, ip2):
-        pairs.append((ip1, ip2))
+            pairs.append((ip1, ip2))
             c += 1
             if c == 2:
                 return jsonify(resp, interconnection=True)
