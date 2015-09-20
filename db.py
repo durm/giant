@@ -30,7 +30,7 @@ def sql_generate_iptable_item(user, ip,date):
     return """
         INSERT INTO iptables VALUES 
         (
-        {0}, {1}, {2}
+        '{0}', '{1}', {2}
         )
     """.format(user, ip,date)
     
