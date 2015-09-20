@@ -27,7 +27,7 @@ def interconnection():
     cur = conn.cursor()
     cur.execute(sql_intersect_iptables(user1, user2))
     
-    ips = [ip for ip in row for row in cur.fetchall()]
+    ips = [ip for row in cur.fetchall() for ip in row]
     conn.close()
     c = 0
     
