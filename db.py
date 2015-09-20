@@ -1,6 +1,7 @@
 import psycopg2
 
-conn = psycopg2.connect("dbname='giant_db' user='giant_u' password='giant_pass'")
+def get_db_connection():
+    return psycopg2.connect("dbname='giant_db' user='giant_u' password='giant_pass'")
 
 sql_create_table = """
     CREATE TABLE iptables 
@@ -35,7 +36,9 @@ def sql_generate_iptable_item(user, ip,date):
     """.format(user, ip,date)
     
 if __name__ == "__main__":
+    conn = get_db_connection()
     cur = conn.cursor()
     cur.execute(sql_create_table)
-    cur.fetchall()
+    cur.commit()
+    conn.close()
     

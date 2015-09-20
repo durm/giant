@@ -15,9 +15,10 @@ def generate_ip():
     
 
 if __name__ == "__main__":
-    from giant.db import conn, sql_generate_iptable_item
+    from giant.db import get_db_connection, sql_generate_iptable_item
     import sys
     
+    conn = get_db_connection()
     try:
         c = int(sys.argv[1])
     except:
@@ -27,3 +28,6 @@ if __name__ == "__main__":
     
     for i in range(c):
         cur.execute(sql_generate_iptable_item(generate_user_id(), generate_ip(), generate_datetime()))
+    
+    conn.commit()
+    conn.close()
