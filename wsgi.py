@@ -14,6 +14,7 @@ def is_different_subnet(ip1, ip2):
 
 
 application = Flask(__name__)
+application.debug = True
 
 
 @application.route("/interconnection/")
