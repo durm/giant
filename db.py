@@ -5,9 +5,10 @@ conn = psycopg2.connect("dbname='giant_db' user='giant_u' password='giant_pass'"
 sql_create_table = """
     CREATE TABLE iptables 
     (
-    user_id VARCHAR(12) PRIMARY KEY,
-    ip_address VARCHAR(16) PRIMARY KEY,
-    date DATETIME
+    user_id VARCHAR(12),
+    ip_address VARCHAR(16),
+    date timestamp,
+    UNIQUE(user_id, ip_address)
     ) 
 """
 
