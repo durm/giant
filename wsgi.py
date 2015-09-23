@@ -39,5 +39,25 @@ def interconnection():
     return jsonify(resp)
 
 
+@application.route("/")
+def iptables():
+    fr = int(request.args.get("fr", 0))
+    size = 100
+    
+    conn = get_db_connection()
+    
+    cur = conn.cursor()
+    
+    cur.execute("select count(*) from iptables;")
+    count = cur.fetchall()[0][0]
+    
+    cur.execute("select * from iptables limit ?, ?;", fr, size)
+    li = cur.fetchall()
+    
+    conn.close()
+    
+    return render("list.html", count=count, iptables=li)
+    
+
 if __name__ == "__main__":
     application.run()
