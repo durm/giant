@@ -56,7 +56,7 @@ def iptables():
     
     conn.close()
     
-    return render_template("list.html", count=count, iptables=li)
+    return render_template("list.html", count=count, iptables=li, offset=offset, limit=limit)
     
 
 if __name__ == "__main__":
