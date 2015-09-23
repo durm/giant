@@ -41,8 +41,8 @@ def interconnection():
 
 @application.route("/")
 def iptables():
-    fr = int(request.args.get("fr", 0))
-    size = 100
+    offset = int(request.args.get("offset", 0))
+    limit = 100
     
     conn = get_db_connection()
     
@@ -51,7 +51,7 @@ def iptables():
     cur.execute("select count(*) from iptables;")
     count = cur.fetchall()[0][0]
     
-    cur.execute("select * from iptables limit ?, ?;", fr, size)
+    cur.execute("select * from iptables limit ? offset ?;", (limit, offset))
     li = cur.fetchall()
     
     conn.close()
