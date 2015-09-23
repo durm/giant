@@ -42,7 +42,7 @@ def interconnection():
 @application.route("/")
 def iptables():
     offset = int(request.args.get("offset", 0))
-    limit = 100
+    limit = 50
     
     conn = get_db_connection()
     

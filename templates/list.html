@@ -1,14 +1,14 @@
 {% extends "root.html" %}
 
 {% block body %}
-<a href=""></a>
-<br/>
+<p>
+    {% if offset - limit >= 0 %}<a href="{{ url_for('iptables', offset=offset-limit) }}">Пред.</a>{% endif %}
+    &#160;| {{ offset }} - {{ offset + limit }} из {{ count }} |&#160;
+    {% if offset + limit <= count %}<a href="{{ url_for('iptables', offset=offset+limit) }}">След.</a>{% endif %}
+</p>
 <ul>
     {% for iptable in iptables %}
         <li>{{ iptable.0 }} {{ iptable.1 }} {{ iptable.2 }}</li>
     {% endfor %}
-    {% if offset - limit >= 0 %}<a href="{{ url_for('iptables', offset=offset-limit) }}">Пред.</a>{% endif %}
-    &#160;|&#160;
-    {% if offset + limit <= count %}<a href="{{ url_for('iptables', offset=offset+limit) }}">След.</a>{% endif %}
 </ul>
 {% endblock %}
