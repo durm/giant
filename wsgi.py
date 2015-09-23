@@ -1,5 +1,5 @@
 import itertools
-from flask import Flask, request, jsonify, g
+from flask import Flask, request, jsonify, g, render_template
 from giant.db import get_db_connection, sql_intersect_iptables
 import time
 
@@ -56,7 +56,7 @@ def iptables():
     
     conn.close()
     
-    return render("list.html", count=count, iptables=li)
+    return render_template("list.html", count=count, iptables=li)
     
 
 if __name__ == "__main__":
