@@ -6,6 +6,7 @@
     &#160;| {{ offset }} - {{ offset + limit }} из {{ count }} |&#160;
     {% if offset + limit <= count %}<a href="{{ url_for('iptables', offset=offset+limit) }}">След.</a>{% endif %}
 </p>
+<hr/>
 <ul>
     {% for iptable in iptables %}
         <li>{{ iptable.0 }} {{ iptable.1 }} {{ iptable.2 }}</li>
