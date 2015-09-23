@@ -51,7 +51,7 @@ def iptables():
     cur.execute("select count(*) from iptables;")
     count = cur.fetchall()[0][0]
     
-    cur.execute("select * from iptables limit ? offset ?;", (limit, offset))
+    cur.execute("select * from iptables limit %s offset %s", (limit, offset))
     li = cur.fetchall()
     
     conn.close()
